@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/jquery.min.js')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/bootstrap.min.js')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/bootstrap.min.css')}}">
+
+    <title>Billow | Chat</title>
+</head>
+<body>
+	<div class="panel-footer">
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="nameInput" class="sr-only">Message</label>
+				<input type="text" class="form-control" id="nameInput">
+			</div>
+			<button type="submit" class="btn btn-default">Send</button>
+		</form>
+	</div>
+	<script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+</body>
+</html>

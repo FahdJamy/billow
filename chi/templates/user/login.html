@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+</head>
+<body>
+	<h4>LOGIN</h4>
+	{% include 'includes/_flashedmsgs.html' %}
+	<form action="" method="POST" novalidate>
+		{{ form.hidden_tag() }}
+		<div>
+			<p>{{ form.username.label }}</p>
+			{{ form.username(placeholder='Username or Email') }}
+			<br>
+			{% for err in form.username.errors %}
+				<span style="color: red;">{{ err }}</span>
+			{% endfor %}
+		</div>
+		<div>
+			<p>{{ form.password.label }}</p>
+			{{ form.password(placeholder='Password') }}
+			<br>
+			{% for error in form.password.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+		</div>
+		<p>{{ form.remember_me }}<span> {{ form.remember_me.label }} </span></p>
+		<p>{{ form.submit }} <span> Need an account? <a href="{{ url_for('user.signup') }}">Signup</a></span></p>
+	</form>
+</body>
+</html>

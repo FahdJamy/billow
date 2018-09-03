@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mines')}}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+
+	<title>
+		{% if title %}
+			{{ title }} | Real
+		{% else %}
+			Billow | Real
+		{% endif %}
+	</title>
+</head>
+<body>
+	<div class="mines-nav">
+		{% if current_user.is_anonymous %}
+			<div>Google: <a href="/index">Login</a></div>
+		{% else %}
+			<div style="display: flex; flex-direction: row;">
+				<span class="m-2">Ayo {{ current_user.username }}</span>
+				<a href="{{ url_for ( 'home.main' ) }}" class="m-2">Home</a>
+				<div class="m-search-box m-2">
+					<input type="text" class="search-username form-control" name="username" placeholder="Username..." id="userFind">
+					<a href="#" class="search-btn"></a>
+				</div>
+			<a href=" {{ url_for ( 'user.timeline', username=current_user.username ) }} " class="m-2">Timeline</a>
+			<a href=" {{ url_for ( 'user.allusers' ) }} " class="m-2">All Users</a>
+			<a href=" {{ url_for ( 'chat.message', reciever=current_user.username ) }} " class="m-2">Messages</a>
+			<a href=" {{ url_for ( 'user.logout' ) }} " class="m-2 pull-left">Logout</a>
+			</div>
+		{% endif %}
+		<hr class="mt-1">
+	</div>
+	{% include 'includes/_flashedmsgs.html' %}
+	{% block content %}{% endblock %}
+
+	<script src="{{ url_for('static', filename='lib.js')}}"></script>
+	<script src="{{ url_for('static', filename='ui.js')}}"></script>
+	<script src="{{ url_for('static', filename='form.js')}}"></script>
+	<script src="{{ url_for('static', filename='app.js')}}"></script>
+	<!-- <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script> -->
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+	{% if user.username == current_user.username %}
+		<p><a href="{{ url_for ('user.account', username=current_user.username) }}">Edit your Profile</a></p>
+	{% endif %}
+	<img src="{{ user_profile_pic }}" alt="Profile Pic">
+		<span>{% if user.about_me %} {{ user.about_me }} {% endif %}</span>
+	<br>
+	{{ user.followers.count() }} Followers | {{ user.followed_user.count() }} Following
+	<br>
+	{% if current_user.username == user.username %}	
+	{% else %}
+	<span>
+		{% if user.last_seen %} 
+			{{ user.username }}'s Timeline ----------- last seen {{ user.last_seen.strftime('%d %B %y') }} at
+			{{ user.last_seen.strftime('%H : %M') }}
+		{% endif %}
+		<p>	
+		</p>
+		{% if user.username != current_user.username %}
+			{% if not current_user.is_following (user) %}
+				<a href="{{ url_for ('user.follow', username=user.username) }}">Follow</a>
+			{% else %}
+				<a href="{{ url_for ('user.unfollow', username=user.username) }}">Unfollow</a>
+			{% endif %}
+		{% endif %}
+	</span>
+	{% endif %}
+	<hr>
+	{% if form %}
+		<form action="" method="POST" class="form-group">
+			{{ form.hidden_tag() }}
+			<div>
+				{{ form.title.label }}
+				{{ form.title(placeholder='Title' ) }}
+				{% for error in form.title.errors %}
+					<span style="color: red;">{{ error }}</span>
+				{% endfor %}
+			</div>
+			<div class="form-group">
+				{{ form.body.label }}
+				{{ form.body(placeholder='Do you have sum to share') }}
+				{% for error in form.body.errors %}
+					<span style="color: red;">{{ error }}</span>
+				{% endfor %}
+			</div>
+			{{ form.submit(class='btn btn-info') }}
+		</form>
+	{% endif %}
+	<table>
+		<tr valign="top">
+			{% if current_user.username == user.username %}	
+				{% for post in posts %}
+					{% include 'includes/_posts.html' %}
+				{% endfor %}
+			{% endif %}
+			{% if previous_posts %}
+				<a href="{{ previous_posts }}">Previous posts</a>
+			{% endif %}
+			{% if other_posts %}
+				<a href="{{ other_posts }}">Load other posts</a>
+			{% endif %}
+		</tr>
+	</table>
+{% endblock content %}

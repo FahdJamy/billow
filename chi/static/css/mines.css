@@ -1,0 +1,14 @@
+.mines-nav {
+	background: #e84118;
+}
+
+.m-search-box {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	transform: translate(-10%, -10%);
+	background: #2f3640;
+	height: 30px;
+	border-radius: 40px;
+	padding: 5px;
+}

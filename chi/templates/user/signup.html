@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sign up</title>
+</head>
+<body>
+	<h4>SIGNUP</h4>
+	{% include 'includes/_flashedmsgs.html' %}
+	<form action="" method="POST" novalidate>
+		{{ form.hidden_tag() }}
+		<div>
+			<p>{{ form.username.label }}</p>
+			{{ form.username(placeholder='Username') }}
+			<br>
+			{% for err in form.username.errors %}
+				<span style="color: red;">{{ err }}</span>
+			{% endfor %}
+		</div>
+		<div>
+			<p>{{ form.email.label }}</p>
+			{{ form.email(placeholder='Email') }}
+			<br>
+			{% for err in form.email.errors %}
+				<span style="color: red;">{{ err }}</span>
+			{% endfor %}
+		</div>
+		<div>
+			<p>{{ form.password.label }}</p>
+			{{ form.password(placeholder='Password') }}
+			<br>
+			{% for error in form.password.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+		</div>
+		<div>
+			<p>{{ form.password_confirm.label }}</p>
+			{{ form.password_confirm(placeholder='Confirm Password') }}
+			<br>
+			{% for error in form.password_confirm.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+		</div>
+		<p>{{ form.submit }} <span> Already have an account ? <a href="{{ url_for('user.login') }}">Login</a></span></p>
+	</form>
+</body>
+</html>

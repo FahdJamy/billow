@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex;">
+	<div class="col-md-9">
+		<div class="form-group form-control" style="height: 77vh;">
+			<ul class="list-group" id="msgs"></ul>
+		</div>
+		<footer class="container">
+			<div class="container mt-4">
+				{% for msg in messages %}
+					<div class="alert alert-success" id="successAlert" role="alert">{{ msg }}</div>
+				{% endfor %}
+				<div class="alert alert-success" id="successAlert" role="alert" style="display: none;"></div>
+				<div class="alert alert-danger" id="errorAlert" role="alert" style="display: none;"></div>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="nameInput" class="sr-only">Username</label>
+						<input type="text" class="form-control mr-1" id="reciever" name="username" placeholder="Username">
+						<label for="msgInput" class="sr-only form-control">Message</label>
+						<input type="text" class="form-control mr-1" id="msgInput" name="message" placeholder="Message">
+					</div>
+					<button type="submit" class="btn btn-outline-info">Send</button>
+				</form>
+			</div>
+		</footer>
+	</div>
+	<div class="col-md-3 form-control" style="height: 84vh;">
+		<div class="m-search-box m-2">
+			<input type="text" class="search-username form-control" name="username" placeholder="Username..." id="findUser">
+			<a href="#" class="search-btn"></a>
+		</div>
+		<div id="profile"></div>
+	</div>
+</div>
+{% endblock %}

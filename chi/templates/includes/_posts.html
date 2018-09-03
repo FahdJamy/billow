@@ -1,0 +1,12 @@
+<table>
+	<tr>
+		<img src="{{ url_for('static', filename='profilePics/profile.PNG' ) }}" style="width: 50px; height: 50px;">
+	</tr>
+	<td>
+		<a href="{{ url_for ('user.timeline', username=post.author.username) }}">{{ post.author.username }}</a>
+		<br>
+		<span><strong>{{ post.title }}</strong><small>this was posted on {{ post.date_posted.strftime('%A %B %y') }}</small></span>
+		<br>
+		{{ post.body }}
+	</td>
+</table>
