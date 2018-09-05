@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime, timedelta
 from chi import db, app
-from chi.models import Post, User
+from chi.models import Post, User, PaginatedAPIMixin
 
 class TestUserCase (unittest.TestCase) :
 	def setUp(self):
@@ -74,8 +74,6 @@ class TestUserCase (unittest.TestCase) :
 		self.assertEqual (r3, [self.post1, self.post2])
 		self.assertEqual (r2, [self.post1, self.post2])
 		self.assertEqual (r1, [self.post1])
-
-
 
 		
 

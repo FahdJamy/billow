@@ -1,7 +1,5 @@
 import unittest
 from datetime import datetime, timedelta
-from chi import db, app
-from chi.models import Post, User
 
 class TestUserCase (unittest.TestCase) :
 	def setUp(self):
